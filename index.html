@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Alimuddin — Senior Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Source Sans 3',Arial,sans-serif;font-size:16px;line-height:1.7;background:#f4f4f4;color:#333;}
+
+/* NAV */
+.topnav{background:#282A35;position:sticky;top:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 16px;box-shadow:0 2px 6px rgba(0,0,0,.3);}
+.topnav-brand{color:#fff;font-size:18px;font-weight:700;padding:14px 0;letter-spacing:.5px;}
+.topnav-brand span{color:#04AA6D;}
+.topnav-links{display:flex;}
+.topnav-links a{display:block;color:#ddd;text-align:center;padding:14px 16px;text-decoration:none;font-size:14px;transition:background .2s,color .2s;}
+.topnav-links a:hover,.topnav-links a.active{background:#04AA6D;color:#fff;}
+
+/* HERO */
+.profile-header{background:#282A35;color:#fff;padding:48px 16px 40px;text-align:center;}
+.avatar{width:90px;height:90px;border-radius:50%;background:#04AA6D;display:flex;align-items:center;justify-content:center;font-size:38px;font-weight:700;color:#fff;margin:0 auto 18px;border:4px solid #04AA6D;box-shadow:0 4px 16px rgba(4,170,109,.35);}
+.profile-header h1{font-size:34px;font-weight:700;letter-spacing:.5px;margin-bottom:6px;}
+.profile-header .subtitle{font-size:17px;color:#04AA6D;font-weight:600;margin-bottom:10px;}
+.contact-bar{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:16px;}
+.contact-pill{background:#3a3d4d;color:#ccc;border-radius:20px;padding:5px 14px;font-size:13px;text-decoration:none;transition:background .2s,color .2s;}
+.contact-pill:hover{background:#04AA6D;color:#fff;}
+
+/* STATS */
+.stats-row{display:flex;background:#fff;border-bottom:3px solid #04AA6D;flex-wrap:wrap;}
+.stat-box{flex:1;text-align:center;padding:20px 10px;border-right:1px solid #e8e8e8;min-width:100px;}
+.stat-box:last-child{border-right:none;}
+.stat-box .num{font-size:28px;font-weight:700;color:#04AA6D;line-height:1;}
+.stat-box .lbl{font-size:12px;color:#777;text-transform:uppercase;letter-spacing:.5px;margin-top:4px;}
+
+/* LAYOUT */
+.main-wrap{max-width:1100px;margin:0 auto;padding:28px 16px;display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start;}
+
+/* CARD */
+.card{background:#fff;border:1px solid #ddd;border-radius:4px;margin-bottom:20px;overflow:hidden;}
+.card-header{color:#fff;padding:10px 16px;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;}
+.ch-green{background:#04AA6D;}
+.ch-dark{background:#282A35;}
+.ch-blue{background:#2196F3;}
+.ch-orange{background:#f57c00;}
+.ch-purple{background:#7b1fa2;}
+.ch-slate{background:#455a64;}
+
+/* INFO ROWS */
+.info-row{display:flex;padding:8px 16px;border-bottom:1px solid #f0f0f0;gap:10px;font-size:14px;align-items:flex-start;}
+.info-row:last-child{border-bottom:none;}
+.info-key{font-weight:600;color:#555;min-width:110px;flex-shrink:0;font-size:13px;}
+.info-val{color:#333;flex:1;}
+.info-val a{color:#04AA6D;text-decoration:none;}
+.info-val a:hover{text-decoration:underline;}
+
+/* BADGES */
+.badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:12px;font-weight:600;margin:2px;}
+.bg{background:#e8f5e9;color:#2e7d32;}
+.bb{background:#e3f2fd;color:#1565c0;}
+.bo{background:#fff3e0;color:#e65100;}
+.bgr{background:#f5f5f5;color:#555;border:1px solid #ddd;}
+.br{background:#fde8e8;color:#c62828;}
+
+/* SKILL TAGS */
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px 14px;}
+.skill-tag{background:#f4f4f4;border:1px solid #ddd;border-radius:3px;padding:4px 12px;font-size:13px;color:#333;font-family:'Source Code Pro',monospace;transition:background .2s,border-color .2s;cursor:default;}
+.skill-tag:hover{background:#e8f5e9;border-color:#04AA6D;color:#2e7d32;}
+.sg-label{padding:10px 16px 4px;font-size:12px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:.6px;}
+
+/* SKILL BARS */
+.skill-bar-wrap{padding:4px 16px 14px;}
+.skill-bar-row{margin-bottom:10px;}
+.skill-bar-label{display:flex;justify-content:space-between;font-size:13px;color:#444;margin-bottom:4px;}
+.skill-bar-label span:last-child{color:#04AA6D;font-weight:600;}
+.skill-track{background:#e8e8e8;height:10px;border-radius:5px;overflow:hidden;}
+.skill-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,#04AA6D,#2196F3);transition:width 1.2s ease;}
+
+/* EXPERIENCE */
+.exp-item{padding:14px 16px;border-bottom:1px solid #f0f0f0;}
+.exp-item:last-child{border-bottom:none;}
+.exp-date{font-size:12px;color:#fff;background:#04AA6D;display:inline-block;padding:2px 10px;border-radius:3px;font-weight:600;margin-bottom:6px;font-family:'Source Code Pro',monospace;}
+.exp-date.alt{background:#2196F3;}
+.exp-role{font-size:15px;font-weight:700;color:#282A35;margin-bottom:2px;}
+.exp-company{font-size:13px;color:#04AA6D;font-weight:600;margin-bottom:8px;}
+.exp-duration{display:inline-block;background:#e3f2fd;color:#1565c0;font-size:11px;padding:1px 8px;border-radius:10px;margin-left:8px;font-weight:600;}
+.exp-desc{font-size:13.5px;color:#555;line-height:1.65;}
+.exp-desc ul{padding-left:18px;margin-top:4px;}
+.exp-desc ul li{margin-bottom:3px;}
+
+/* EDUCATION */
+.edu-item{padding:13px 16px;border-bottom:1px solid #f0f0f0;}
+.edu-item:last-child{border-bottom:none;}
+.edu-year{font-size:12px;color:#fff;background:#7b1fa2;display:inline-block;padding:2px 10px;border-radius:3px;font-weight:600;margin-bottom:5px;font-family:'Source Code Pro',monospace;}
+.edu-degree{font-size:14px;font-weight:700;color:#282A35;}
+.edu-school{font-size:13px;color:#777;margin:2px 0;}
+.edu-result{font-size:13px;color:#04AA6D;font-weight:600;}
+
+/* TABLE */
+.w3-table{width:100%;border-collapse:collapse;font-size:13.5px;}
+.w3-table th{background:#282A35;color:#fff;padding:8px 12px;text-align:left;font-weight:600;font-size:13px;}
+.w3-table td{padding:8px 12px;border-bottom:1px solid #f0f0f0;}
+.w3-table tr:hover td{background:#f9f9f9;}
+.w3-table tr:last-child td{border-bottom:none;}
+
+/* PREF ROWS */
+.pref-row{display:flex;padding:8px 16px;border-bottom:1px solid #f0f0f0;font-size:14px;align-items:center;}
+.pref-row:last-child{border-bottom:none;}
+.pref-key{min-width:140px;font-weight:600;color:#555;font-size:13px;}
+.pref-val{color:#333;}
+
+/* REFERENCES */
+.ref-grid{display:grid;grid-template-columns:1fr 1fr;}
+.ref-item{padding:14px 16px;border-right:1px solid #f0f0f0;}
+.ref-item:last-child{border-right:none;}
+.ref-name{font-size:15px;font-weight:700;color:#282A35;}
+.ref-role{font-size:13px;color:#04AA6D;font-weight:600;margin-bottom:6px;}
+.ref-detail{font-size:13px;color:#666;line-height:1.7;}
+.ref-detail a{color:#04AA6D;text-decoration:none;}
+
+/* NOTE */
+.note-box{background:#e8f5e9;border-left:4px solid #04AA6D;padding:10px 14px;font-size:13.5px;color:#2e7d32;margin:0 0 0;border-radius:2px;}
+
+/* DECLARATION */
+.declaration{background:#fff;border:1px solid #ddd;border-left:4px solid #04AA6D;border-radius:3px;padding:14px 18px;font-size:13.5px;color:#555;font-style:italic;margin-bottom:20px;}
+
+/* FOOTER */
+footer{background:#282A35;color:#aaa;text-align:center;padding:22px 16px;font-size:13px;}
+footer a{color:#04AA6D;text-decoration:none;}
+footer a:hover{text-decoration:underline;}
+
+@media(max-width:768px){
+  .main-wrap{grid-template-columns:1fr;}
+  .topnav-links{display:none;}
+  .profile-header h1{font-size:26px;}
+  .stat-box{flex:1 1 50%;}
+  .ref-grid{grid-template-columns:1fr;}
+  .ref-item{border-right:none;border-bottom:1px solid #f0f0f0;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="topnav">
+  <div class="topnav-brand"><span>Ali</span>muddin.dev</div>
+  <div class="topnav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#reference">Reference</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="profile-header">
+  <div class="avatar">A</div>
+  <h1>ALIMUDDIN</h1>
+  <div class="subtitle">Senior Software Engineer &nbsp;|&nbsp; Manager</div>
+  <div style="font-size:14px;color:#999;">MSc CSE &nbsp;·&nbsp; 12+ Years Experience &nbsp;·&nbsp; Dhaka, Bangladesh</div>
+  <div class="contact-bar">
+    <a class="contact-pill" href="mailto:alim.pust89@gmail.com">✉ alim.pust89@gmail.com</a>
+    <a class="contact-pill" href="tel:+8801737739822">📞 01737739822</a>
+    <a class="contact-pill" href="https://linkedin.com/in/alimuddin-48a82477" target="_blank">🔗 LinkedIn</a>
+    <a class="contact-pill" href="https://github.com/alim89" target="_blank">💻 GitHub</a>
+    <span class="contact-pill">📍 Dhaka, Bangladesh</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat-box"><div class="num">12+</div><div class="lbl">Years Exp</div></div>
+  <div class="stat-box"><div class="num">8</div><div class="lbl">Job Roles</div></div>
+  <div class="stat-box"><div class="num">3.65</div><div class="lbl">MSc GPA</div></div>
+  <div class="stat-box"><div class="num">3</div><div class="lbl">Companies</div></div>
+  <div class="stat-box"><div class="num">15+</div><div class="lbl">Technologies</div></div>
+  <div class="stat-box"><div class="num">A+</div><div class="lbl">Blood Group</div></div>
+</div>
+
+<div class="main-wrap">
+<!-- ── LEFT SIDEBAR ── -->
+<div>
+
+  <div class="card" id="about">
+    <div class="card-header ch-green">👤 Personal Info</div>
+    <div class="info-row"><span class="info-key">Full Name</span><span class="info-val">Alimuddin</span></div>
+    <div class="info-row"><span class="info-key">Date of Birth</span><span class="info-val">11 October 1990</span></div>
+    <div class="info-row"><span class="info-key">Gender</span><span class="info-val">Male</span></div>
+    <div class="info-row"><span class="info-key">Marital Status</span><span class="info-val">Married</span></div>
+    <div class="info-row"><span class="info-key">Nationality</span><span class="info-val">Bangladeshi</span></div>
+    <div class="info-row"><span class="info-key">Religion</span><span class="info-val">Islam</span></div>
+    <div class="info-row"><span class="info-key">Blood Group</span><span class="info-val"><span class="badge br">A+</span></span></div>
+    <div class="info-row"><span class="info-key">Father</span><span class="info-val">Akbar Ali</span></div>
+    <div class="info-row"><span class="info-key">Mother</span><span class="info-val">Kulsum</span></div>
+    <div class="info-row"><span class="info-key">NID No.</span><span class="info-val" style="font-family:'Source Code Pro',monospace;font-size:12px;">19904112325000172</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-dark">📞 Contact</div>
+    <div class="info-row"><span class="info-key">Phone</span><span class="info-val"><a href="tel:+8801737739822">01737739822</a></span></div>
+    <div class="info-row"><span class="info-key">Email</span><span class="info-val"><a href="mailto:alim.pust89@gmail.com">alim.pust89@gmail.com</a></span></div>
+    <div class="info-row"><span class="info-key">LinkedIn</span><span class="info-val"><a href="https://linkedin.com/in/alimuddin-48a82477" target="_blank">alimuddin-48a82477</a></span></div>
+    <div class="info-row"><span class="info-key">GitHub</span><span class="info-val"><a href="https://github.com/alim89" target="_blank">github.com/alim89</a></span></div>
+    <div class="info-row"><span class="info-key">Current Addr</span><span class="info-val" style="font-size:12.5px;">100 Saratgupta Rd, Narinda, Dhaka-1100, Gulshan, Dhaka 1212</span></div>
+    <div class="info-row"><span class="info-key">Permanent</span><span class="info-val" style="font-size:12.5px;">Digdana-7420, Jhikorgacha, Jessore</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-orange">🎯 Career Preferences</div>
+    <div class="pref-row"><span class="pref-key">Job Category</span><span class="pref-val">IT / Telecommunication</span></div>
+    <div class="pref-row"><span class="pref-key">Looking For</span><span class="pref-val">Mid Level Job</span></div>
+    <div class="pref-row"><span class="pref-key">Present Salary</span><span class="pref-val"><strong style="color:#2e7d32;">BDT 115,000</strong>/month</span></div>
+    <div class="pref-row"><span class="pref-key">Expected Salary</span><span class="pref-val"><strong style="color:#e65100;">BDT 140,000</strong>/month</span></div>
+    <div class="pref-row"><span class="pref-key">Preferred Area</span><span class="pref-val">Anywhere in Bangladesh</span></div>
+    <div class="pref-row"><span class="pref-key">Countries</span><span class="pref-val"><span class="badge bb">🇦🇺 Australia</span> <span class="badge bb">🇨🇦 Canada</span> <span class="badge bb">🇯🇵 Japan</span></span></div>
+    <div class="pref-row"><span class="pref-key">Org. Type</span><span class="pref-val" style="font-size:12.5px;">Software Company, Multinational, Group of Companies</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-purple">🌐 Language Proficiency</div>
+    <div class="info-row"><span class="info-key">Bangla</span><span class="info-val"><span class="badge bg">Native</span> &nbsp;R/W/S: High</span></div>
+    <div class="info-row"><span class="info-key">English</span><span class="info-val"><span class="badge bb">Proficient</span> &nbsp;R/W/S: High</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-slate">🎮 Extra Activities</div>
+    <div style="padding:12px 16px;">
+      <span class="badge bgr">Programming</span>
+      <span class="badge bgr">Gaming</span>
+      <span class="badge bgr">Cricket</span>
+      <span class="badge bgr">Tour</span>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── RIGHT CONTENT ── -->
+<div>
+
+  <div class="card">
+    <div class="card-header ch-green">📝 Career Objective</div>
+    <div style="padding:14px 16px;">
+      <p style="font-size:14.5px;color:#444;line-height:1.75;margin-bottom:12px;">
+        In Software Development — Goal and Scope of the project. System Analyst, System Specification,
+        Project Planning (Study, Create Goals, Create Strategies) and Scheduling,
+        Data Flow Diagram Design (Coding, Database Design), Implementation, System Security.
+      </p>
+      <div class="note-box">
+        <strong>12+ Years</strong> of enterprise software development experience across hospital management,
+        automotive/industrial ERP, CRM, vehicle management, and microservices platforms.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" id="experience">
+    <div class="card-header ch-dark">💼 Work Experience &nbsp;<span style="font-size:12px;font-weight:400;opacity:.8;">— 12 Years +</span></div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jan 2024 — Present</div>
+      <div class="exp-role">Manager (Senior Software Engineer) <span class="exp-duration">Current</span></div>
+      <div class="exp-company">Asgar Ali Hospital — City Group | Dhaka</div>
+      <div class="exp-desc"><ul>
+        <li>Software Development: system specification, planning, design, implementation and security</li>
+        <li>Responsible for <strong>HRMS, PayRoll, IPD, OPD, Accounts, MIS, CAFE, Store, Pharmacy, Parking, Medical College</strong> overall software processes</li>
+        <li>Leadership, communication, problem-solving, time management, collaboration, conflict resolution, mentoring, decision-making, critical thinking</li>
+      </ul></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date alt">Jul 2021 — Jan 2024</div>
+      <div class="exp-role">Manager (Senior Software Engineer) <span class="exp-duration">2.6 yrs</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc"><ul>
+        <li>Programme & Project Planning: requirement analysis, architectural analysis, business analysis with database design</li>
+        <li>Application Development Module Modification, UI Design, Coding, Testing & Debugging</li>
+        <li>Database Analysis, stored procedures, SQL queries, views, triggers (SQL Server)</li>
+        <li>Responsible: <strong>NITS-CRM, Sales System, Machinery's System (Hero), Appraisal System, Inventory Management, Nitol Bay Resort, Vehicle Management System, Health Wellness Program, Microservices</strong></li>
+      </ul></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jul 2018 — Jul 2021</div>
+      <div class="exp-role">Assistant Manager (Senior Software Engineer) <span class="exp-duration">3 yrs</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc"><ul>
+        <li>Application development, requirement analysis, architectural analysis, testing & debugging</li>
+        <li>UI design, coding, database design, stored procedures, SQL queries, views, triggers</li>
+        <li>Defects/bugs handling; transforming business requirements into detailed test scenarios</li>
+      </ul></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date alt">Jul 2016 — Jul 2018</div>
+      <div class="exp-role">Sr. Executive (Software Engineer) <span class="exp-duration">2 yrs</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc">C# Programming, ADO.NET, ASP.NET, LINQ, AJAX, jQuery, CSS, MVC Framework, Crystal Report, SQL Server 2010, Stored Procedures, DTS, Cursor, Trigger.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jul 2015 — Jul 2016</div>
+      <div class="exp-role">Executive (Software Engineer) <span class="exp-duration">1 yr</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc">C# Programming, ADO.NET, ASP.NET, LINQ, AJAX, jQuery, CSS, MVC Framework, Crystal Report, SQL Server 2010.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date alt">Nov 2014 — Jul 2015</div>
+      <div class="exp-role">Sr. Officer (Jr. Software Engineer) <span class="exp-duration">8 months</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc">C# Programming, ADO.NET, ASP.NET, LINQ, AJAX, jQuery, CSS, MVC Framework, Crystal Report, SQL Server 2010.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2014 — Nov 2014</div>
+      <div class="exp-role">Officer (Jr. Software Engineer) <span class="exp-duration">6 months</span></div>
+      <div class="exp-company">NITOL NILOY GROUP / TATA GROUP | Dhaka-1212</div>
+      <div class="exp-desc">C# Programming, ADO.NET, ASP.NET, LINQ, AJAX, jQuery, CSS, MVC Framework, Crystal Report, SQL Server 2010.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date alt">Feb 2014 — Apr 2014</div>
+      <div class="exp-role">Programmer (.NET) <span class="exp-duration">2 months</span></div>
+      <div class="exp-company">JBRSOFT.COM | Dhaka-1229</div>
+      <div class="exp-desc">Code, test, and troubleshoot programs; maintain and modify existing programs; write new program code per specifications; analyze program performance; write and maintain programming documentation.</div>
+    </div>
+  </div>
+
+  <div class="card" id="education">
+    <div class="card-header ch-purple">🎓 Education</div>
+    <div class="edu-item">
+      <div class="edu-year">2021 – 2023</div>
+      <div class="edu-degree">Master of Science — Computer Science and Engineering (MSc CSE)</div>
+      <div class="edu-school">Jagannath University, Bangladesh</div>
+      <div class="edu-result">GPA: 3.65 / 4.0 &nbsp;·&nbsp; Achievement: Success</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2008 – 2012</div>
+      <div class="edu-degree">Bachelor of Engineering — Computer Science and Engineering (BEngg CSE)</div>
+      <div class="edu-school">Pabna University of Science and Technology, Bangladesh</div>
+      <div class="edu-result">GPA: 3.46 / 4.0 &nbsp;·&nbsp; Successfully Completed</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2006 – 2008</div>
+      <div class="edu-degree">Higher Secondary Certificate (HSC) — Science</div>
+      <div class="edu-school">Bankra Degree College, Bangladesh</div>
+      <div class="edu-result">Result: 4.00 / 5.00</div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-year">2004 – 2006</div>
+      <div class="edu-degree">Secondary School Certificate (SSC) — Science</div>
+      <div class="edu-school">Digdana Khasal Nagar High School, Bangladesh</div>
+      <div class="edu-result">Result: 4.81 / 5.00</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-dark">📚 Professional Training</div>
+    <table class="w3-table">
+      <thead><tr><th>Training Title</th><th>Institute</th><th>Year</th><th>Duration</th></tr></thead>
+      <tbody>
+        <tr><td>Oracle Database Administration I — Fundamental SQL</td><td>IBCS-PRIMAX Software (BD) Ltd, Dhanmondi</td><td>2015</td><td>3 Months</td></tr>
+        <tr><td>Oracle Database Administration II — Database Admin</td><td>IBCS-PRIMAX Software (BD) Ltd, Dhanmondi</td><td>2015</td><td>3 Months</td></tr>
+        <tr><td>ASP.NET using C# and SQL Server</td><td>IBCS-PRIMAX Software (BD) Ltd, Dhanmondi</td><td>2014</td><td>4 Months</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" id="skills">
+    <div class="card-header ch-blue">⚙️ Technical Skills</div>
+    <div class="sg-label">Programming Languages</div>
+    <div class="skill-tags">
+      <span class="skill-tag">C#</span><span class="skill-tag">C</span><span class="skill-tag">C++</span>
+      <span class="skill-tag">Java</span><span class="skill-tag">JavaScript</span>
+      <span class="skill-tag">PL/SQL</span><span class="skill-tag">XML</span>
+    </div>
+    <div class="sg-label">Frameworks & Libraries</div>
+    <div class="skill-tags">
+      <span class="skill-tag">ASP.NET</span><span class="skill-tag">ASP.NET MVC</span>
+      <span class="skill-tag">.NET Core</span><span class="skill-tag">ADO.NET</span>
+      <span class="skill-tag">Entity Framework</span><span class="skill-tag">Angular</span>
+      <span class="skill-tag">jQuery</span><span class="skill-tag">Web API</span>
+      <span class="skill-tag">Web Service</span><span class="skill-tag">AJAX</span>
+    </div>
+    <div class="sg-label">Databases</div>
+    <div class="skill-tags">
+      <span class="skill-tag">MS SQL Server</span><span class="skill-tag">Oracle</span>
+      <span class="skill-tag">Stored Procedures</span><span class="skill-tag">Views</span>
+      <span class="skill-tag">Triggers</span><span class="skill-tag">Cursors</span><span class="skill-tag">DTS</span>
+    </div>
+    <div class="sg-label">Frontend & Reporting</div>
+    <div class="skill-tags">
+      <span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span>
+      <span class="skill-tag">JSON</span><span class="skill-tag">RDLC Report</span>
+      <span class="skill-tag">Crystal Report</span><span class="skill-tag">SSRS</span>
+    </div>
+    <div class="sg-label">Methodology & Tools</div>
+    <div class="skill-tags" style="margin-bottom:6px;">
+      <span class="skill-tag">Agile</span><span class="skill-tag">Microservices</span>
+      <span class="skill-tag">Software Architecture</span><span class="skill-tag">OOP</span>
+      <span class="skill-tag">Visual Studio</span><span class="skill-tag">Linux Admin</span>
+      <span class="skill-tag">Oracle Admin</span>
+    </div>
+    <div class="sg-label">Proficiency Levels</div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>C# / .NET Ecosystem</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" id="b1" style="width:0%"></div></div></div>
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>MS SQL Server / Oracle</span><span>92%</span></div><div class="skill-track"><div class="skill-fill" id="b2" style="width:0%"></div></div></div>
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>ASP.NET MVC / Web API</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" id="b3" style="width:0%"></div></div></div>
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>Software Architecture</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" id="b4" style="width:0%"></div></div></div>
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>Project Management</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" id="b5" style="width:0%"></div></div></div>
+      <div class="skill-bar-row"><div class="skill-bar-label"><span>Angular / JavaScript</span><span>78%</span></div><div class="skill-track"><div class="skill-fill" id="b6" style="width:0%"></div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header ch-orange">🏆 Certification</div>
+    <table class="w3-table">
+      <thead><tr><th>Certification</th><th>Institute</th><th>Location</th><th>Year</th></tr></thead>
+      <tbody>
+        <tr><td>Business Communication Skills and Client Management</td><td>Nitol Motors Ltd (Arranged by HRD)</td><td>Nitol Motors Ltd</td><td>Jan 2016</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" id="reference">
+    <div class="card-header ch-dark">🤝 References</div>
+    <div class="ref-grid">
+      <div class="ref-item">
+        <div class="ref-name">Zulfiker Mahmud</div>
+        <div class="ref-role">Professor — Jagannath University</div>
+        <div class="ref-detail">
+          ✉ <a href="mailto:zulfikerm@yahoo.com">zulfikerm@yahoo.com</a><br>
+          📱 +88 01721-191718
+        </div>
+        <div style="margin-top:8px;"><span class="badge bg">Academic</span></div>
+      </div>
+      <div class="ref-item">
+        <div class="ref-name">Sanat Mondal</div>
+        <div class="ref-role">Senior Manager — Nitol Niloy Group</div>
+        <div class="ref-detail">
+          ✉ <a href="mailto:cse.sanat@gmail.com">cse.sanat@gmail.com</a><br>
+          📱 +88 01712-995265
+        </div>
+        <div style="margin-top:8px;"><span class="badge bb">Professional</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="declaration">
+    I hereby declare that the information provided in this portfolio is true and accurate to the best of my knowledge.
+    <br><br><strong style="color:#333;">— Alimuddin</strong>
+  </div>
+
+</div>
+</div><!-- /main-wrap -->
+
+<footer>
+  <p><strong style="color:#fff;">ALIMUDDIN</strong> &nbsp;·&nbsp; Senior Software Engineer & Manager &nbsp;·&nbsp; Dhaka, Bangladesh</p>
+  <p style="margin-top:8px;">
+    <a href="mailto:alim.pust89@gmail.com">alim.pust89@gmail.com</a> &nbsp;|&nbsp;
+    <a href="https://linkedin.com/in/alimuddin-48a82477" target="_blank">LinkedIn</a> &nbsp;|&nbsp;
+    <a href="https://github.com/alim89" target="_blank">GitHub</a>
+  </p>
+  <p style="margin-top:8px;font-size:12px;color:#666;">© 2026 Alimuddin. All rights reserved.</p>
+</footer>
+
+<script>
+// Animate skill bars on scroll into view
+const bars=[{id:'b1',val:'95%'},{id:'b2',val:'92%'},{id:'b3',val:'90%'},{id:'b4',val:'88%'},{id:'b5',val:'85%'},{id:'b6',val:'78%'}];
+let animated=false;
+const skillSection=document.getElementById('skills');
+const io=new IntersectionObserver(entries=>{
+  if(entries[0].isIntersecting&&!animated){
+    animated=true;
+    bars.forEach((b,i)=>setTimeout(()=>{ document.getElementById(b.id).style.width=b.val; },i*130));
+  }
+},{threshold:.2});
+io.observe(skillSection);
+
+// Nav active highlight on scroll
+const sections=document.querySelectorAll('div[id],section[id]');
+const navLinks=document.querySelectorAll('.topnav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{ if(window.scrollY>=s.offsetTop-90) cur=s.id; });
+  navLinks.forEach(a=>{
+    const h=a.getAttribute('href').replace('#','');
+    a.style.background=h===cur?'#04AA6D':'';
+    a.style.color=h===cur?'#fff':'';
+  });
+});
+</script>
+</body>
+</html>
